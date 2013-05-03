@@ -5,6 +5,7 @@ class Main {
 	public function run() {
 		if ($this->hasUnsavedChanges()) {
 			$this->commitChanges();
+			$this->pushChanges();
 		}
 	}
 
@@ -19,6 +20,10 @@ class Main {
 		$message .= chr(10) . implode(chr(10), $output);
 		$message = str_replace('"', '\'', $message);
 		exec('git commit -a -m "' . $message . '"', $output, $status);
+	}
+
+	public function pushChanges() {
+		exec('git origin master', $output, $status);
 	}
 }
 
