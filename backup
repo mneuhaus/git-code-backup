@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+class Main {
+	public function run() {
+		if ($this->hasUnsavedChanges()) {
+
+		}
+	}
+
+	public function hasUnsavedChanges() {
+		exec('git status', $output, $status);
+		var_dump($output);
+	}
+}
+
+$app = new Main();
+$app->run();
+
+?>
