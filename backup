@@ -17,8 +17,8 @@ class Main {
 		$message = "Backup commit on: " . date('H:i:s d.m.Y');
 		exec('git add . && git status', $output, $status);
 		$message .= chr(10) . implode(chr(10), $output);
-		var_dump($message);
-		// exec('git commit -a -m "' . $message . '"', $output, $status);
+		$message = str_replace('"', '\'', $message);
+		exec('git commit -a -m "' . $message . '"', $output, $status);
 	}
 }
 
