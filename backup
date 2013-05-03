@@ -23,7 +23,7 @@ class Main {
 	}
 
 	public function pushChanges() {
-		exec('git origin master', $output, $status);
+		exec('git push origin master', $output, $status);
 	}
 }
 
