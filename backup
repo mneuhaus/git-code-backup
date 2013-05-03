@@ -4,13 +4,21 @@
 class Main {
 	public function run() {
 		if ($this->hasUnsavedChanges()) {
-
+			$this->commitChanges();
 		}
 	}
 
 	public function hasUnsavedChanges() {
 		exec('git status', $output, $status);
-		var_dump($output);
+		return $output[1] !== 'nothing to commit (working directory clean)';
+	}
+
+	public function commitChanges() {
+		$message = "Backup commit on: " . date('H:i:s d.m.Y');
+		echo $message;
+		exec('git add . && git status', $output, $status);
+		var_dump(implode(chr(10), $output));
+		// exec('git commit -a -m "' . $message . '"', $output, $status);
 	}
 }
 
